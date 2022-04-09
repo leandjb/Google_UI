@@ -6,29 +6,33 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BasePage {
 
-
     protected static WebDriver driver;
-    private static WebDriverWait wait;
+    private final WebDriverWait wait;
 
-    //    private static final Object ChromeOptions = "src/test/resources/driver/chromedriver.exe";
-    //    static driver = new ChromeDriver(options);
 
     static{
-
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArgument("start-maximized");
-
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
+
+//        chromeOptions.addArguments("--headless");
+
         driver = new ChromeDriver(chromeOptions);
+
 //        wait = new WebDriverWait(driver, 10);
+//        driver.manage().window().maximize();
     }
 
     public BasePage(WebDriver driver){
         BasePage.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
 //        wait = new WebDriverWait(driver, 10);
     }
 
@@ -37,18 +41,26 @@ public class BasePage {
     }
 
     private WebElement find(String locator){
-
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
-    public void clickElement(String locator){
+    public void clickElement(String locator) {
         find(locator).click();
     }
 
     public void write(String locator, String textToWrite){
         find(locator).clear();
         find(locator).sendKeys(textToWrite);
+    }
 
+    public void selectFromDropdownValue(String locator, String valueToSelect){
+        Select dropdown = new Select(find(locator));
+        dropdown.selectByValue(valueToSelect);
+    }
+
+    public void selectFromDropdownIndex(String locator, int valueToSelect){
+        Select dropdown = new Select(find(locator));
+        dropdown.selectByIndex(valueToSelect);
     }
 
 

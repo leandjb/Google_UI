@@ -21,7 +21,7 @@ public class BasePage {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
 
-//        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--incognito");
 
         driver = new ChromeDriver(chromeOptions);
 
@@ -38,6 +38,10 @@ public class BasePage {
 
     public static void navigateTo(String url){
         driver.get(url);
+    }
+
+    public static void closeBrowser() {
+        driver.quit();
     }
 
     private WebElement find(String locator){

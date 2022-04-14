@@ -2,10 +2,8 @@ package pages;
 
 public class GooglePage extends BasePage{
 
-    private String searchButton = "(//input[@name='btnK'])[2]";
-    private String searchTextField = "";
-
-//todo resolver conexion con webdriver
+    private String searchButton = "(//input[@class='RNmpXc'])[2]";
+    private String searchTextField = "q";
 
     public GooglePage(){
         super(driver);

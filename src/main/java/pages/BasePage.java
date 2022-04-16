@@ -20,11 +20,8 @@ public class BasePage {
     static{
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
-
         chromeOptions.addArguments("--incognito");
-
         driver = new ChromeDriver(chromeOptions);
-
 //        wait = new WebDriverWait(driver, 10);
 //        driver.manage().window().maximize();
     }
@@ -32,7 +29,6 @@ public class BasePage {
     public BasePage(WebDriver driver){
         BasePage.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-
 //        wait = new WebDriverWait(driver, 10);
     }
 
@@ -49,10 +45,17 @@ public class BasePage {
     }
 
     public void clickElement(String locator) {
+
         find(locator).click();
     }
 
+    public void enterElement(String locator) {
+
+        find(locator).submit();
+    }
+
     public void write(String locator, String textToWrite){
+
         find(locator).clear();
         find(locator).sendKeys(textToWrite);
     }
@@ -66,7 +69,5 @@ public class BasePage {
         Select dropdown = new Select(find(locator));
         dropdown.selectByIndex(valueToSelect);
     }
-
-
 
 }

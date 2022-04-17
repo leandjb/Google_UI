@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.GooglePage;
 
 public class GoogleSteps {
@@ -22,10 +23,12 @@ public class GoogleSteps {
 
     @And("^click on search button$")
     public void clickOnSearchButton() {
-        google.clickGoogleSearch();
+        google.enterGoogleSearch();
     }
 
     @Then("^the results match with criteria$")
     public void theResultsMatchWithCriteria() {
+
+        google.matchResult("https://www.asus.com");
     }
 }

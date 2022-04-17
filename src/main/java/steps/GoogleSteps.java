@@ -18,7 +18,7 @@ public class GoogleSteps {
 
     @When("^i enter search criteria$")
     public void iEnterSearchCriteria() {
-        google.enterSearchCriteria("ASUS");
+        google.enterSearchCriteria("ASUS Wikipedia");
     }
 
     @And("^click on search button$")
@@ -29,6 +29,7 @@ public class GoogleSteps {
     @Then("^the results match with criteria$")
     public void theResultsMatchWithCriteria() {
 
-        google.matchResult("https://www.asus.com");
+        google.clickWikipedia();
+        google.matchResult("ASUS");
     }
 }

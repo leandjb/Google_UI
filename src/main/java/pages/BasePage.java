@@ -24,9 +24,9 @@ public class BasePage {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--incognito");
         driver = new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
 
 //        wait = new WebDriverWait(driver, 10);
-//        driver.manage().window().maximize();
     }
 
     public BasePage(WebDriver driver){
